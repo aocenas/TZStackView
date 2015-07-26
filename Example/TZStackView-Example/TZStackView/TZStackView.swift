@@ -69,7 +69,10 @@ public class TZStackView: UIView {
     }
     
     deinit {
-        // This removes `hidden` value KVO observers using didSet()
+        let registeredViews = registeredKvoSubviews
+        for view in registeredViews  {
+            removeHiddenListener(view)
+        }
         arrangedSubviews = []
     }
     
